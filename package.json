@@ -1,0 +1,47 @@
+{
+  "name": "node-cluster",
+  "version": "1.0.0",
+  "description": "Run your server in cluster mode",
+  "main": "dist/cluster",
+  "engines": {
+    "node": ">=4.5",
+    "npm": "~3.10.3"
+  },
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint ./src",
+    "test": "cross-env NODE_ENV=test && mocha src/test/*.test.js --require babel-core/register || exit 1",
+    "cluster": "cross-env NODE_ENV=development && nodemon --watch src --exec babel-node -- src/cluster.js",
+    "server": "cross-env NODE_ENV=development && nodemon --watch src --exec babel-node -- src/server.js",
+    "clean": "rimraf dist/*.*",
+    "build": "npm run clean && babel src --ignore src/test,*.test.js --out-dir dist",
+    "prestart": "npm run build",
+    "start": "cross-env NODE_ENV=production && node dist/cluster.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-preset-es2015": "^6.24.0",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "cross-env": "^5.0.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0",
+    "loadtest": "^2.3.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "cluster": "^0.7.7",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1",
+    "winston": "^2.3.1"
+  },
+  "keywords": [
+    "cluster",
+    "node"
+  ],
+  "author": "jorgemcdev",
+  "license": "ISC"
+}
