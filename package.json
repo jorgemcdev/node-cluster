@@ -9,13 +9,13 @@
   },
   "scripts": {
     "eslint": "./node_modules/.bin/eslint ./src",
-    "test": "cross-env NODE_ENV=test && mocha src/test/*.test.js --require babel-core/register || exit 1",
-    "cluster": "cross-env NODE_ENV=development && nodemon --watch src --exec babel-node -- src/cluster.js",
-    "server": "cross-env NODE_ENV=development && nodemon --watch src --exec babel-node -- src/server.js",
+    "test": "cross-env NODE_ENV=test mocha src/test/*.test.js --require babel-core/register || exit 1",
+    "cluster": "cross-env NODE_ENV=development nodemon --watch src --exec babel-node -- src/cluster.js",
+    "server": "cross-env NODE_ENV=development nodemon --watch src --exec babel-node -- src/server.js",
     "clean": "rimraf dist/*.*",
     "build": "npm run clean && babel src --ignore src/test,*.test.js --out-dir dist",
     "prestart": "npm run build",
-    "start": "cross-env NODE_ENV=production && node dist/cluster.js"
+    "start": "cross-env NODE_ENV=production node dist/cluster.js"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
